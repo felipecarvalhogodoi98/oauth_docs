@@ -1,1 +1,45 @@
-site_name: My Docs
+site_name: OAuth 2.0
+site_description: Documentação do OAuth 2.0
+repo_name: felipecarvalhogodoi98/oauth_docs
+repo_url: https://github.com/felipecarvalhogodoi98/oauth_docs
+copyright: Copyright &copy; GAC116 - 2024
+
+nav:
+  - Início: index.md
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: img/oauth-logo-square.png
+  logo: img/oauth-logo-square.png
+  features:
+    - content.tabs.link
+    - content.code.copy    
