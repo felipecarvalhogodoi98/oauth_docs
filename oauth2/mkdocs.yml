@@ -15,6 +15,7 @@ nav:
       - Implícito: fluxos/implicito.md
       - Credenciais do cliente: fluxos/cliente_credenciais.md
       - Credenciais de senha do proprietário do recurso: fluxos/senha_proprietario.md
+  - OAuth 2.1: oauth2.1.md
 
 extra_css:
   - stylesheets/extra.css
