@@ -6,6 +6,15 @@ copyright: Copyright &copy; GAC116 - 2024
 
 nav:
   - Início: index.md
+  - Introdução: introducao.md
+  - Arquitetura:
+      - Visão geral: arquitetura/arquitetura.md
+      - Funções e terminologia: arquitetura/funcoes_e_termos.md
+  - Fluxos OAuth 2.0:
+      - Código de autorização: fluxos/codigo_autorizacao.md
+      - Implícito: fluxos/implicito.md
+      - Credenciais do cliente: fluxos/cliente_credenciais.md
+      - Credenciais de senha do proprietário do recurso: fluxos/senha_proprietario.md
 
 extra_css:
   - stylesheets/extra.css
