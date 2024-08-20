@@ -1,0 +1,5 @@
+# Credenciais de senha do proprietário do recurso
+
+As credenciais de senha do proprietário do recurso (ou seja, nome de usuário e senha) podem ser usadas diretamente como uma concessão de autorização para obter um token de acesso. As credenciais só devem ser usadas quando houver um alto grau de confiança entre o proprietário do recurso e o cliente (por exemplo, o cliente faz parte do sistema operacional do dispositivo ou de um aplicativo altamente privilegiado) e quando outros tipos de concessão de autorização não estiverem disponíveis ( como um código de autorização).
+
+Embora esse tipo de concessão exija acesso direto do cliente às credenciais do proprietário do recurso, as credenciais do proprietário do recurso são usadas para uma única solicitação e trocadas por um token de acesso. Este tipo de concessão pode eliminar a necessidade de o cliente armazenar as credenciais do proprietário do recurso para uso futuro, trocando as credenciais com um token de acesso de longa duração ou um token de atualização.

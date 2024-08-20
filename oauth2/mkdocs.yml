@@ -15,13 +15,25 @@ nav:
       - Implícito: fluxos/implicito.md
       - Credenciais do cliente: fluxos/cliente_credenciais.md
       - Credenciais de senha do proprietário do recurso: fluxos/senha_proprietario.md
+  - Tokens:
+      - Access Token: tokens/access_token.md
+      - Refresh Token: tokens/refresh_token.md
+      - OAuth Scope: tokens/escopos.md
+  - Bearer Token: bearer_token.md
+  - JWT: jwt.md
   - OAuth 2.1: oauth2.1.md
+  - Exemplo: exemplo.md
 
 extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/extra.js
+
+markdown_extensions:
+  - codehilite
+  - pymdownx.highlight
+  - pymdownx.superfences
 
 theme:
   name: material

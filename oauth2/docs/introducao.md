@@ -1,5 +1,7 @@
 # Introduction to OAuth 2.0
 
+![OAuth](./img/OAuth.png)
+
 OAuth 2.0, ou Open Authorization, é um protocolo aberto que fornece um método seguro e padronizado para que aplicativos de terceiros acessem recursos em nome de um usuário, sem a necessidade de compartilhar as credenciais do usuário. Este protocolo foi projetado para atender à demanda crescente por maior segurança e eficiência no acesso a APIs e serviços da web, oferecendo uma forma controlada e limitada de delegar acessos.
 
 Desenvolvido como uma evolução do OAuth 1.0, o OAuth 2.0 trouxe diversas melhorias significativas, incluindo uma arquitetura simplificada e maior flexibilidade na implementação. Ele suporta uma ampla variedade de dispositivos e plataformas, permitindo que desenvolvedores integrem seus aplicativos com serviços populares como Google, Facebook, Twitter e muitos outros, sem comprometer a segurança dos dados do usuário.

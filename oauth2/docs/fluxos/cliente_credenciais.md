@@ -1,0 +1,3 @@
+# Credenciais do cliente
+
+As credenciais do cliente (ou outras formas de autenticação do cliente) podem ser usadas como uma concessão de autorização quando o escopo da autorização é limitado aos recursos protegidos sob o controle do cliente, ou aos recursos protegidos previamente organizados com o servidor de autorização. As credenciais do cliente são usadas como uma concessão de autorização normalmente quando o cliente está agindo em seu próprio nome (o cliente também é o proprietário do recurso) ou está solicitando acesso a recursos protegidos com base em uma autorização previamente combinada com o servidor de autorização.
