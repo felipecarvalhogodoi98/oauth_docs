@@ -1,0 +1,830 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do OAuth 2.0">
+      
+      
+      
+      
+        <link rel="prev" href="../arquitetura/">
+      
+      
+        <link rel="next" href="../../fluxos/codigo_autorizacao/">
+      
+      
+      <link rel="icon" href="../../img/oauth-logo-square.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.7">
+    
+    
+      
+        <title>Funções e terminologia - OAuth 2.0</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.046329b4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#definicao-de-termos-e-funcoes-no-oauth-20" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="OAuth 2.0" class="md-header__button md-logo" aria-label="OAuth 2.0" data-md-component="logo">
+      
+  <img src="../../img/oauth-logo-square.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OAuth 2.0
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Funções e terminologia
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/felipecarvalhogodoi98/oauth_docs" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    felipecarvalhogodoi98/oauth_docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OAuth 2.0" class="md-nav__button md-logo" aria-label="OAuth 2.0" data-md-component="logo">
+      
+  <img src="../../img/oauth-logo-square.png" alt="logo">
+
+    </a>
+    OAuth 2.0
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/felipecarvalhogodoi98/oauth_docs" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    felipecarvalhogodoi98/oauth_docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introducao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introdução
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arquitetura
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Funções e terminologia
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Fluxos OAuth 2.0
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Fluxos OAuth 2.0
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fluxos/codigo_autorizacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Código de autorização
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fluxos/implicito/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implícito
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fluxos/cliente_credenciais/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credenciais do cliente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fluxos/senha_proprietario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credenciais de senha do proprietário do recurso
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tokens
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tokens
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tokens/access_token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Access Token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tokens/refresh_token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Refresh Token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tokens/escopos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth Scope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bearer_token/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bearer Token
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jwt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JWT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oauth2.1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth 2.1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exemplo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exemplo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="definicao-de-termos-e-funcoes-no-oauth-20">Definição de termos e funções no OAuth 2.0</h1>
+<p>O protocolo OAuth 2.0 envolve vários atores e termos específicos que desempenham papéis críticos na sua operação. Compreender esses papéis e a terminologia associada é fundamental para implementar o OAuth 2.0 de forma eficaz e segura. Abaixo estão as descrições detalhadas dos principais termos e papéis envolvidos no processo:</p>
+<p><strong>1. Resource Owner (Proprietário do Recurso)</strong>
+O Resource Owner é a entidade que possui e controla o acesso aos recursos protegidos. Em contextos comuns, o Resource Owner é o usuário final, que possui dados pessoais ou outras informações que podem ser acessadas por meio de APIs. Esse usuário pode conceder ou revogar permissões para que um Client acesse seus recursos. No fluxo típico, o Resource Owner interage com o Authorization Server para autorizar o Client a obter um Access Token.</p>
+<p><strong>Exemplo</strong>: Um usuário de uma rede social que concede a um aplicativo de terceiros acesso à sua lista de amigos.</p>
+<p><strong>2. Client (Cliente)</strong>
+O Client é a aplicação que deseja acessar recursos protegidos em nome do Resource Owner. Para fazer isso, o Client deve primeiro obter autorização do Resource Owner, normalmente por meio do Authorization Server. Dependendo da natureza da aplicação, o Client pode ser:</p>
+<ul>
+<li><strong>Confidencial</strong>: Uma aplicação que pode proteger suas credenciais, como um backend seguro.</li>
+<li><strong>Pública</strong>: Uma aplicação que não pode proteger suas credenciais, como uma aplicação móvel ou um Single Page Application (SPA).</li>
+</ul>
+<p><strong>Exemplo</strong>: Um aplicativo de terceiros que deseja postar atualizações em uma conta de rede social em nome do usuário.</p>
+<p><strong>3. Authorization Server (Servidor de Autorização)</strong>
+O Authorization Server é o componente responsável por autenticar o Resource Owner e emitir os tokens necessários para o Client. Este servidor gerencia a autorização e é responsável por garantir que apenas os Clients autenticados e autorizados possam acessar os recursos protegidos.</p>
+<ul>
+<li><strong>Emissão de Access Tokens</strong>: O Authorization Server emite um Access Token ao Client, que permite o acesso aos recursos protegidos.</li>
+<li><strong>Emissão de Refresh Tokens</strong>: O Authorization Server pode também emitir um Refresh Token, que permite ao Client obter novos Access Tokens quando necessário, sem exigir uma nova autorização do Resource Owner.</li>
+</ul>
+<p><strong>Exemplo</strong>: Um servidor de autenticação como o OAuth 2.0 do Google, que permite que usuários façam login em diferentes aplicativos usando suas credenciais do Google.</p>
+<p><strong>4. Resource Server (Servidor de Recursos)</strong>
+O Resource Server hospeda os recursos protegidos que o Client deseja acessar. Ele é responsável por validar o Access Token recebido do Client e garantir que este token seja válido e emitido por um Authorization Server confiável. Se o token for válido, o Resource Server permite que o Client acesse os recursos solicitados.</p>
+<p><strong>Exemplo</strong>: O servidor de API de uma rede social que fornece dados de perfil de usuário para aplicativos autorizados.</p>
+<p><strong>5. Access Token (Token de Acesso)</strong>
+O Access Token é uma credencial que o Client usa para acessar recursos protegidos no Resource Server. Este token é emitido pelo Authorization Server após o Resource Owner conceder a autorização. O Access Token contém informações que permitem ao Resource Server validar a identidade do Client e as permissões concedidas.</p>
+<ul>
+<li><strong>Formato</strong>: Pode ser uma string opaca ou um JWT (JSON Web Token), dependendo da implementação.</li>
+<li><strong>Validade</strong>: Os Access Tokens têm uma duração limitada, após a qual se tornam inválidos e devem ser renovados.</li>
+</ul>
+<p><strong>Exemplo</strong>: Um token JWT contendo as permissões concedidas a um aplicativo para acessar a lista de contatos de um usuário.</p>
+<p><strong>6. Refresh Token (Token de Atualização)</strong>
+O Refresh Token é uma credencial que o Client pode usar para obter novos Access Tokens sem precisar que o Resource Owner realize uma nova autenticação. Isso é útil para manter sessões longas sem exigir que o usuário autentique repetidamente.</p>
+<ul>
+<li><strong>Segurança</strong>: Refresh Tokens devem ser protegidos rigorosamente, pois podem ser usados para prolongar o acesso aos recursos protegidos.</li>
+<li><strong>Revogação</strong>: O Authorization Server pode revogar Refresh Tokens para encerrar a sessão de um Client.</li>
+</ul>
+<p><strong>Exemplo</strong>: Um Refresh Token que permite a um aplicativo de e-mail sincronizar mensagens em segundo plano sem exigir que o usuário faça login repetidamente.</p>
+<p><strong>7. Authorization Grant (Concessão de Autorização)</strong>
+A Authorization Grant é um conjunto de credenciais que o Client usa para obter um Access Token do Authorization Server. Existem diferentes tipos de grants, dependendo do fluxo OAuth 2.0 em uso:</p>
+<ul>
+<li><strong>Authorization Code</strong>: Usado principalmente por aplicações confidenciais, onde o código de autorização é trocado por um Access Token.</li>
+<li><strong>Implicit</strong>: Utilizado por aplicações públicas, onde o Access Token é retornado diretamente.</li>
+<li><strong>Resource Owner Password Credentials</strong>: Usado quando o Client obtém as credenciais do Resource Owner diretamente, geralmente em cenários de confiança elevada.</li>
+<li><strong>Client Credentials</strong>: Usado quando o Client atua em seu próprio nome, em vez de em nome de um Resource Owner.</li>
+</ul>
+<p><strong>Exemplo</strong>: O Authorization Code é obtido quando um usuário consente em permitir que um aplicativo acesse seus dados durante o fluxo de autorização.</p>
+<p><strong>8. Scope (Escopo)</strong>
+O Scope define o nível de acesso ou os recursos específicos que o Client está solicitando. Durante o processo de autorização, o Client especifica quais Scopes ele precisa, e o Resource Owner pode consentir ou restringir esse acesso. O Authorization Server então emite um Access Token que é limitado aos Scopes concedidos.</p>
+<p><strong>Exemplo</strong>: Um Client pode solicitar acesso de leitura ao perfil de usuário e à lista de amigos, mas o Resource Owner pode optar por conceder apenas acesso de leitura ao perfil.</p>
+<p><strong>9. State (Estado)</strong>
+O parâmetro State é utilizado para proteger o processo de autorização contra ataques de falsificação de solicitação entre sites (CSRF). Quando o Client inicia uma solicitação de autorização, ele pode incluir um parâmetro state, que é devolvido inalterado pelo Authorization Server após a conclusão do processo de autorização. Isso permite ao Client verificar se a resposta corresponde à solicitação original.</p>
+<p><strong>Exemplo</strong>: O Client gera um valor único para o parâmetro state ao iniciar o fluxo de autorização, que é então verificado após a resposta do Authorization Server.</p>
+<p><strong>10. Redirect URI (URI de Redirecionamento)</strong>
+A Redirect URI é a URL para a qual o Authorization Server redireciona o Resource Owner após a autorização, enviando o Authorization Code ou o Access Token. Para prevenir ataques, o Authorization Server deve verificar se a Redirect URI registrada corresponde àquela fornecida na solicitação.</p>
+<p><strong>Exemplo</strong>: Uma URL no domínio do aplicativo Client para onde o Authorization Server redireciona o usuário após a autorização.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; GAC116 - 2024
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dff1b7c8.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
