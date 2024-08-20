@@ -9,7 +9,7 @@ Principais Componentes:
 - **Authorization Server**: O servidor que autentica o usuário e emite tokens.
 - **Resource Server**: O servidor que hospeda o recurso protegido e valida os tokens emitidos.
 
-(./img/oauth-abstract.png)
+![abstract](./img/oauth-abstract.png)
 
 ## Fluxo de Interações na Arquitetura OAuth 2.0
 O fluxo básico de interações na arquitetura OAuth 2.0 segue os seguintes passos:
